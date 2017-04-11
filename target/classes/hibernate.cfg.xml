@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <!--  
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.password">170596</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mydb</property>
+  <property name="hibernate.connection.username">root</property>
+  
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  -->
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.hbm2ddl.auto">update</property>
+  <mapping resource="com/app/model/Items.hbm.xml"/>
+  <mapping resource="com/app/model/Order.hbm.xml"/>
+  <mapping resource="com/app/model/Receiver.hbm.xml"/>
+  <mapping resource="com/app/model/Sender.hbm.xml"/>
+  <mapping resource="com/app/model/Trackinfo.hbm.xml"/>
+  <mapping resource="com/app/model/User.hbm.xml"/>
+  <mapping resource="com/app/model/Warehouse.hbm.xml"/>
+  <mapping class = "com.app.model.product"/>
+  <mapping class = "com.app.model.Visitor"/>
+  <mapping class = "com.app.model.Manager"/>
+  
+ </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-12 22:57:18 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.app.model.Warehouse" table="warehouse" catalog="mydb" optimistic-lock="version">
+        <id name="warehouseId" type="java.lang.Integer">
+            <column name="WarehouseID" />
+            <generator class="identity" />
+        </id>
+        <property name="warehouseAddress" type="string">
+            <column name="WarehouseAddress" length="45" />
+        </property>
+        <property name="warehouseZip" type="string">
+            <column name="WarehouseZip" length="45" />
+        </property>
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="WarehouseID" />
+            </key>
+            <one-to-many class="com.app.model.Order" />
+        </set>
+    </class>
+</hibernate-mapping>

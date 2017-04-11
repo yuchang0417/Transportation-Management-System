@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-12 22:57:18 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.app.model.Order" table="order" catalog="mydb" optimistic-lock="version">
+        <id name="orderId" type="java.lang.Integer">
+            <column name="OrderID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="receiver" class="com.app.model.Receiver" fetch="select">
+            <column name="ReceiverID" />
+        </many-to-one>
+        <many-to-one name="sender" class="com.app.model.Sender" fetch="select">
+            <column name="SenderID" />
+        </many-to-one>
+        <many-to-one name="trackinfo" class="com.app.model.Trackinfo" fetch="select">
+            <column name="TrackID" />
+        </many-to-one>
+        <many-to-one name="warehouse" class="com.app.model.Warehouse" fetch="select">
+            <column name="WarehouseID" />
+        </many-to-one>
+        <property name="orderDate" type="timestamp">
+            <column name="OrderDate" length="19" />
+        </property>
+        <property name="itemId" type="java.lang.Integer">
+            <column name="ItemID" />
+        </property>
+        <set name="itemses" table="items" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ItemID" not-null="true" />
+            </key>
+            <one-to-many class="com.app.model.Items" />
+        </set>
+    </class>
+</hibernate-mapping>

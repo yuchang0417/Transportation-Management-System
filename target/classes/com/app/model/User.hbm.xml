@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-12 22:57:18 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.app.model.User" table="user" catalog="mydb" optimistic-lock="version">
+        <id name="userId" type="java.lang.Integer">
+            <column name="UserID" />
+            <generator class="identity" />
+        </id>
+        <property name="userFirstName" type="string">
+            <column name="UserFirstName" length="20" />
+        </property>
+        <property name="userLastName" type="string">
+            <column name="UserLastName" length="20" />
+        </property>
+        <property name="userEmail" type="string">
+            <column name="UserEmail" length="24" />
+        </property>
+        <property name="userPhone" type="string">
+            <column name="UserPhone" length="25" />
+        </property>
+        <property name="userStreet" type="string">
+            <column name="UserStreet" length="50" />
+        </property>
+        <property name="userzip" type="string">
+            <column name="Userzip" length="10" />
+        </property>
+        <set name="receivers" table="receiver" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserID" not-null="true" />
+            </key>
+            <one-to-many class="com.app.model.Receiver" />
+        </set>
+        <set name="senders" table="sender" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserID" not-null="true" />
+            </key>
+            <one-to-many class="com.app.model.Sender" />
+        </set>
+    </class>
+</hibernate-mapping>

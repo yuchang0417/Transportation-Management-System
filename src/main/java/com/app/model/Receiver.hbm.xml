@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-12 22:57:18 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.app.model.Receiver" table="receiver" catalog="mydb" optimistic-lock="version">
+        <id name="receiverId" type="java.lang.Integer">
+            <column name="ReceiverID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="com.app.model.User" fetch="select">
+            <column name="UserID" not-null="true" />
+        </many-to-one>
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ReceiverID" />
+            </key>
+            <one-to-many class="com.app.model.Order" />
+        </set>
+    </class>
+</hibernate-mapping>

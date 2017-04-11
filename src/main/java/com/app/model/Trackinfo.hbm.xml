@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-12 22:57:18 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.app.model.Trackinfo" table="trackinfo" catalog="mydb" optimistic-lock="version">
+        <id name="trackId" type="java.lang.Integer">
+            <column name="TrackID" />
+            <generator class="identity" />
+        </id>
+        <property name="trackDate" type="string">
+            <column name="TrackDate" length="45" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="Status" length="45" not-null="true" />
+        </property>
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="TrackID" />
+            </key>
+            <one-to-many class="com.app.model.Order" />
+        </set>
+    </class>
+</hibernate-mapping>
